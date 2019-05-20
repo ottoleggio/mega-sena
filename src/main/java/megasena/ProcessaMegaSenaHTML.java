@@ -1,4 +1,8 @@
 package megasena;
+  
+ /**
+ * Classe responsável por processar HTML de Mega Sena.
+ */
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -21,11 +25,18 @@ public class ProcessaMegaSenaHTML {
 
     private IProcessaSorteio igr = null;
 
+
     public ProcessaMegaSenaHTML() {
         elementos = new ArrayList();
         pattern = Pattern.compile(REGEX);
     }
-
+	
+	/**
+	 * Método de processamento HTML.
+	 *
+	 * @param file
+	 * @param i	 
+	 */
     public boolean processaHTML(String file, IProcessaSorteio i) {
         String line = null;
         igr = i;
@@ -50,6 +61,11 @@ public class ProcessaMegaSenaHTML {
         return true;
     }
 
+	/**
+	 * Método que processa uma linha.
+	 *
+	 * @param l String padrão
+	 */
     private void processLine(String l) {
         int start = 0;
         int end = 0;
@@ -64,6 +80,11 @@ public class ProcessaMegaSenaHTML {
         }
     }
 
+	/**
+	 * Método adiciona uma linha à string e processa sorteio.
+	 *
+	 * @param elemento String.
+	 */
     public void adicionaString(String elemento) {
         elementos.add(elemento);
         if (elementos.size() == megasena.Sorteio.NUMERO_ELEMENTOS) {
